@@ -119,7 +119,7 @@ def generate_images(
         z2 = torch.from_numpy(np.random.RandomState(seeds[seed_idx+1]).randn(1, G.z_dim)).to(device)
 
         for i in range(int(num_steps)):
-            alpha = i/num_steps         # interpolation factor
+            alpha = i/int(num_steps)         # interpolation factor
             z = torch.lerp(z1, z2, alpha)   # linear interpolation between x and y with factor alpha
             image_queue.append(z)
 
