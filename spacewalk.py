@@ -38,7 +38,7 @@ def num_range(s: str) -> List[int]:
 @click.pass_context
 @click.option('--network', 'network_pkl', help='Network pickle filename', required=True)
 @click.option('--seeds', type=num_range, help='List of random seeds')
-@click.option('--steps', 'num_steps', help='List of random seeds')
+@click.option('--steps', 'num_steps', help='Amount of interpolation steps')
 @click.option('--trunc', 'truncation_psi', type=float, help='Truncation psi', default=1, show_default=True)
 @click.option('--class', 'class_idx', type=int, help='Class label (unconditional if not specified)')
 @click.option('--noise-mode', help='Noise mode', type=click.Choice(['const', 'random', 'none']), default='const', show_default=True)
@@ -119,7 +119,7 @@ def generate_images(
 
 
         # Generate linearly spaced interpolation coefficients
-        interp_coeffs = torch.linspace(0, 1, num_steps).to(device)
+        interp_coeffs = torch.linspace(0, 1, int(num_steps)).to(device)
 
         # Compute linear interpolation between z1 and z2
         interpolated_z = z1 * (1 - interp_coeffs) + z2 * interp_coeffs
