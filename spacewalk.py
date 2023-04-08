@@ -112,7 +112,7 @@ def generate_images(
 
 
     image_queue = []
-    for seed_idx, seed in range(seeds-1):
+    for seed_idx, seed in range(len(seeds)-1):
 
         z1 = torch.from_numpy(np.random.RandomState(seed[seed_idx]).randn(1, G.z_dim)).to(device)
         z2 = torch.from_numpy(np.random.RandomState(seed[seed_idx+1]).randn(1, G.z_dim)).to(device)
