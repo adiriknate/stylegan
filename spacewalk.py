@@ -116,7 +116,7 @@ def generate_images(
 
         z1 = torch.from_numpy(np.random.RandomState(seeds[seed_idx]).randn(1, G.z_dim)).to(device)
         z2 = torch.from_numpy(np.random.RandomState(seeds[seed_idx+1]).randn(1, G.z_dim)).to(device)
-
+        z2 = z2.repeat(z1.shape[0], 1)  # explicitly set the size of z2 to be the same as z1
 
         # Generate linearly spaced interpolation coefficients
         interp_coeffs = torch.linspace(0, 1, int(num_steps)).to(device)
