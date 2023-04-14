@@ -262,7 +262,7 @@ def setup_training_loop_kwargs(
 
     assert augpipe is None or isinstance(augpipe, str)
     if augpipe is None:
-        augpipe = 'nate'
+        augpipe = 'bgc'
     else:
         if aug == 'noaug':
             raise UserError('--augpipe cannot be specified with --aug=noaug')
